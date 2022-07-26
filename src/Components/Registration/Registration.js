@@ -2,14 +2,14 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 import React, { useState } from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import Footer from '../Footer/Footer';
 import Nav from '../Nav/Nav';
 
 const Registration = () => {
     const [registerData, setRegisterData] = useState({});
-
+    const history = useHistory()
     const handleOnBlur = (e) => {
         const field = e.target.name;
         const value = e.target.value;
@@ -36,6 +36,10 @@ const Registration = () => {
                 console.log(data)
 
                 localStorage.setItem("token", data.token);
+                if (data.token) {
+                    alert("Registration Successfully");
+                    history.push("/");
+                }
 
             })
 
